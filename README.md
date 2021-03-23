@@ -6,13 +6,14 @@ This Raku Perl 6 package has grammar classes and action classes for the parsing 
 interpretation of spoken commands that specify Job Recruiting (JR) workflows.
 
 It is envisioned that the interpreters (actions) are going to target different
-programming languages: R, Mathematica, Python, etc.
+programming languages: Python, Raku, R, WL, etc.
 
 This project is closely related to the project
-[Head Huntress Consort]()
+[Head Huntress Gemma](https://github.com/antononcube/ConversationalAgents/tree/master/Projects/HeadHuntressGemma).
   
 This diagram shows the conversational agent components this grammar addresses:
 
+![HHGDesign](https://github.com/antononcube/ConversationalAgents/raw/master/Projects/HeadHuntressGemma/Diagrams/Head-Huntress-Gemma-design-small.jpg)
 
 ## Installation
 
@@ -52,10 +53,11 @@ Here is a more complicated, statistics pipeline specification:
 
 ```raku
 say ToRecruitingWorkflowCode(
-    "how many people got hired with java skills last month;
+    "how many people got hired with java and .net skills last month;
      what is the breakdown of skills over geo locations;
      where software developers are hired the most;
-     plot the results;", "WL-HRMon")
+     plot the results;", 
+     "WL-HRMon")
 ```
 
 Here is a recommendations specification (by collaborative filtering):
@@ -64,12 +66,21 @@ Here is a recommendations specification (by collaborative filtering):
 say ToRecruitingWorkflowCode(
     "what people like me proposed to clients last week;
      which talent similar to those i can submit today;
-     show me the job titles and skills;", "WL-HRMon")
+     show me the job titles and skills;", 
+     "WL-HRMon")
 ```
 
 The command above should print out WL code for the WL package `...`, \[AA1\]:
 
     TBD...
+
+## Similarities
+
+The grammars in the in this project are close related to the food preparation grammars 
+in the Raku package
+[Raku::DSL::English::FoodPreparationWorkflows](https://github.com/antononcube/Raku-DSL-English-FoodPreparationWorkflows),
+[AAr4].
+(The initial grammar versions were *derived* from [AAr4].)
 
 ## References
 
@@ -88,3 +99,7 @@ The command above should print out WL code for the WL package `...`, \[AA1\]:
 (2021),
 [GitHub/antononcube](https://github.com/antononcube).
 
+[AAr4] Anton Antonov,
+[Raku::DSL::English::FoodPreparationWorkflows](https://github.com/antononcube/Raku-DSL-English-FoodPreparationWorkflows),
+(2021),
+[GitHub/antononcube](https://github.com/antononcube).
