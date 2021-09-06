@@ -76,11 +76,16 @@ The command above should print out WL code for the WL package `...`, \[AA1\]:
 
 ## Similarities
 
-The grammars in the in this project are close related to the food preparation grammars 
+The grammars in this project are closely related to the food preparation grammars 
 in the Raku package
-[Raku::DSL::English::FoodPreparationWorkflows](https://github.com/antononcube/Raku-DSL-English-FoodPreparationWorkflows),
+[DSL::English::FoodPreparationWorkflows](https://github.com/antononcube/Raku-DSL-English-FoodPreparationWorkflows),
 [AAr4].
 (The initial grammar versions were *derived* from [AAr4].)
+
+The design and structure of data acquisition workflows package (grammars)
+[DSL::English::DataAcquisitionWorkflows](https://github.com/antononcube/Raku-DSL-English-DataAcquisitionWorkflows),
+[AAr5], 
+are also very similar to both [AAr4] and this one (DSL::English::RecruitingWorkflows).
 
 ## References
 
@@ -100,6 +105,11 @@ in the Raku package
 [GitHub/antononcube](https://github.com/antononcube).
 
 [AAr4] Anton Antonov,
-[Raku::DSL::English::FoodPreparationWorkflows](https://github.com/antononcube/Raku-DSL-English-FoodPreparationWorkflows),
+[DSL::English::FoodPreparationWorkflows Raku package](https://github.com/antononcube/Raku-DSL-English-FoodPreparationWorkflows),
+(2021),
+[GitHub/antononcube](https://github.com/antononcube).
+
+[AAr5] Anton Antonov,
+[DSL::English::DataAcquisitionWorkflows Raku package](https://github.com/antononcube/Raku-DSL-English-DataAcquisitionWorkflows),
 (2021),
 [GitHub/antononcube](https://github.com/antononcube).
