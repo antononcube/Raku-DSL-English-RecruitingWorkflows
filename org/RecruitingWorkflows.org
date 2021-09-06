@@ -1,0 +1,162 @@
+#+TITLE: Recruiting Workflows
+#+AUTHOR: Anton Antonov
+#+EMAIL: antononcube@posteo.net
+#+TODO: TODO ONGOING MAYBE | DONE CANCELED 
+#+OPTIONS: toc:1 num:0
+
+* Scope
+** Data availability queries
+- For purpose
+  - For types of data generators
+  - For applicable transformations 
+  - By source
+  - By properties
+    - Quality
+    - Missing data
+  - Distributions
+- Randomly generated
+  - Properties
+  - Variable relationships
+** Data manipulation
+- Specifications
+- Transformations
+  - Re-shaping
+  - Combining
+  - Grouping
+  - Filtering
+- Quality verification
+  - Pre-manipulation
+  - Post-manipulation
+** Final form
+- Target consumer
+- Target repository
+- Target organization / format
+- Relational database
+  - XML
+  - JSON
+  - CSV
+  - Etc.
+** Documentation
+- Generated
+- Manually written
+** Unit tests
+- Social contract with target consumer
+- Generated
+- Manually written
+* TODO Sample dialogs [0%] [0/4]
+1. [ ] Random resumes
+   - Get a set of random resumes
+2. [ ] Random jobs
+   - Get a set of random jobs
+3. [ ] Get eager and local candidates
+   - Find candidates that are eager and java, spring, and sql skills
+   - Show only the candidates that are in this time zone
+   - Order candidates by resume recency
+* TODO Implementation [9%] [1/11]
+** DONE GitHub repository
+- [[https://github.com/antononcube/Raku-DSL-English-DataAcquisitionWorkflows][DSL::English::DataAcquisitionWorkflows]]
+** TODO Package structure
+- Implementation-wise.
+** TODO Leverage analogy with [[https://github.com/antononcube/Raku-DSL-English-FoodPreparationWorkflows][DSL::English::FoodPreparationWorkflows]]
+- Consider the following mapping / replacements:
+  | Action   | FoodPreparationWorkflows   | DataAcquisitionWorkflows     |
+  |----------+----------------------------+------------------------------|
+  |          | <ate-phrase>               | <procured-phrase>            |
+  |          | <cook-phrase>              | <prepare-phrase>             |
+  |          | <cooked-phrase>            | <prepared-phrase>            |
+  |          | <cooking-phrase>           | <preparing-phrase>           |
+  |          | <course-phrase>            | <resume-phrase>              |
+  |          | <resume-phrase>            | <resume-phrase>              |
+  |          | <eat-phrase>               | <procure-phrase>             |
+  |          | <eating-phrase>            | <procuring-phrase>           |
+  |          | <entity-country-name>      | <entity-jobs-name>           |
+  |          | <food-cuisine-spec>        | <data-source-spec>           |
+  |          | <food-quality-spec>        | <candidate-quality-spec      |
+  |          | <food-quality-spec>        | <candidate-quality-spec>     |
+  |          | <item-of-food-phrase>      | <item-of-talent-phrase>      |
+  |          | <mixed-food-spec-list>     | <mixed-resume-spec-list>     |
+  |          | <period-meal-spec>         | <period-of-procurement-spec> |
+  |          | <sous-chef-spec>           | <head-hunter-susana-spec>    |
+  |          | <to-eat-phrase>            | <to-procure-phrase>          |
+  | redefine | <ingredient-spec>          |                              |
+  | remove   | <allergic-reaction-phrase> |                              |
+  | remove   | <entity-country-adjective> |                              |
+  | remove   | <entity-region-name>       |                              |
+** TODO Job titles an skill entities package [66%] [2/3]
+- [[https://github.com/antononcube/Raku-DSL-Entity-Jobs][DSL::Entity::Jobs]]
+- [X] First version of the metadata entities package.
+- [ ] Revised version with unit tests
+- [X] Utilization in this package.
+** TODO Main grammar [0%] [0/6]
+- [ ] Recommendations
+- [ ] Recommendations by profile
+- [ ] Data ingredients query
+- [ ] Data quality query
+- [ ] Random data creation
+- [ ] Introspection query
+** TODO Recruiting phrases [0%] [0/2]
+- [ ] Reuse role generation code for [[https://github.com/antononcube/Raku-DSL-English-FoodPreparationWorkflows][DSL::English::FoodPreparationWorkflows]].
+- [ ] Edit and refine.
+** TODO Ingredients query [0%] [0/3]
+- Essential for recommendations by profile.
+- [ ] Direct reuse of recommendations by profile from
+  [[https://github.com/antononcube/Raku-DSL-English-FoodPreparationWorkflows][DSL::English::FoodPreparationWorkflows]].
+- [ ] Inclusion of metadata entity names from [[https://github.com/antononcube/Raku-DSL-Entity-Metadata][DSL::Entity::Metadata]].
+- [ ] More universal specifications:
+  - [ ] Combination of metadata types and generic types
+  - [ ] Allow phrases like:
+    : a resume with both java and software architect
+** TODO Introspection grammar
+- [ ] Direct reuse of recommendations by profile from
+  [[https://github.com/antononcube/Raku-DSL-English-FoodPreparationWorkflows][DSL::English::FoodPreparationWorkflows]].
+** TODO Recommendations by history [0%] [0/2]
+- [ ] Handling of general recommendations commands.
+  - Which includes /implicitly/ the use of history.
+- [ ] Handling of recommendations commands for specific resumes (jobs)
+  similarities.
+  - Resumes (jobs) are specified by ID and/or unique name.
+** TODO Recommendations by profile [0%] [0/2]
+- [ ] Direct reuse of recommendations by profile from
+  [[https://github.com/antononcube/Raku-DSL-English-FoodPreparationWorkflows][DSL::English::FoodPreparationWorkflows]].
+- [ ] Refactored version.
+  - This is would be very useful for grammar debugging.
+** TODO Candidate quality query
+* TODO Unit tests [0%] [0/9]
+** General
+- The test files reused and modified from
+  [[https://github.com/antononcube/Raku-DSL-English-FoodPreparationWorkflows][DSL::English::FoodPreparationWorkflows]] are marked with *FPW*.
+** TODO Tests code generation from phrases
+- Made a Mathematica notebook that:
+  - Imports phrases from sources FPW
+  - Generate Raku tests code
+** TODO Ingredients query commands [0%] [0/2]                           :FPW:
+- [ ] Created
+- [ ] All tests passed
+** TODO Introspection query commands [0%] [0/2]                         :FPW:
+- [ ] Created
+- [ ] All tests passed
+** TODO Recommendations by profile commands [0%] [0/2]                  :FPW:
+- [ ] Created
+- [ ] All tests passed
+** TODO Recommendations commands [0%] [0/2]                             :FPW:
+- [ ] Created
+- [ ] All tests passed
+** TODO Sanity check tests [0%] [0/2]                                   :FPW:
+- [ ] Created
+- [ ] All tests passed
+** TODO User-ID-specs-handling [0%] [0/2]                               :FPW:
+- [ ] Created
+- [ ] All tests passed
+** TODO Candidate quality commands [%] [/] 
+* TODO Actions [0%] [0/2]
+** TODO Mathematica [0%] [0/3]
+*** TODO Create random talent procurements dataset
+*** TODO Program HHG actions [0%] [0/6]
+- [ ] Introspection
+- [ ] Recommendations
+- [ ] Recommendations by profile
+- [ ] Ingredient queries
+- [ ] Random data generation
+- [ ] Data quality verification
+*** TODO Program HHG DSL notebook
+** TODO R [%] [/]
