@@ -5,33 +5,13 @@
 #+OPTIONS: toc:1 num:0
 
 * Scope
-** Data availability queries
-- For purpose
-  - For types of data generators
-  - For applicable transformations 
-  - By source
-  - By properties
-    - Quality
-    - Missing data
-  - Distributions
-- Randomly generated
-  - Properties
-  - Variable relationships
-** Data manipulation
-- Specifications
-- Transformations
-  - Re-shaping
-  - Combining
-  - Grouping
-  - Filtering
-- Quality verification
-  - Pre-manipulation
-  - Post-manipulation
+** Talent availability queries
+** Iterative manipulation of recommendations lists
 ** Final form
 - Target consumer
 - Target repository
 - Target organization / format
-- Relational database
+- Data representation
   - XML
   - JSON
   - CSV
