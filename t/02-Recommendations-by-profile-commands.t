@@ -9,47 +9,31 @@ use Test;
 
 my $pCOMMAND = DSL::English::RecruitingWorkflows::Grammar;
 
-plan 10;
+plan 6;
 
 ## 1
-ok $pCOMMAND.parse('can you suggest a local talent'.lc),
-        'can you suggest a local talent';
+ok $pCOMMAND.parse('can hhg recommend talent that has the skills java, spring, and agile'.lc),
+        'can hhg recommend talent that has the skills java, spring, and agile';
 
 ## 2
-ok $pCOMMAND.parse('i want to work it in healthcare jobs'.lc),
-        'i want to work it in healthcare jobs';
+ok $pCOMMAND.parse('recommend talent that has the skills java, spring, and agile'.lc),
+        'recommend talent that has the skills java, spring, and agile';
 
 ## 3
-ok $pCOMMAND.parse('i am free what do i prepare'.lc),
-        'i am free what do i prepare';
+ok $pCOMMAND.parse('recommend talent that has the job titles java developer, software architect, and agile coach'.lc),
+        'recommend talent that has the job titles java developer, software architect, and agile coach';
 
 ## 4
-ok $pCOMMAND.parse('im available suggest me a resume'.lc),
-        'im feeling sick suggest me a resume';
+ok $pCOMMAND.parse('recommend talent that has java development, software architect, agile, and agile coach'.lc),
+        'recommend talent that has java development, software architect, agile, and agile coach';
 
 ## 5
-ok $pCOMMAND.parse('i want to procure a java talent'.lc),
-        'i want to procure a java talent';
+ok $pCOMMAND.parse('recommend jobs that have java development, software architect, agile, and agile coach'.lc),
+        'recommend jobs that have java development, software architect, agile, and agile coach';
 
 ## 6
-ok $pCOMMAND.parse('i want to work on a software architecture job'.lc),
-        'i want to work on a software architecture job';
-
-## 7
-ok $pCOMMAND.parse('i want to procure someone from Idaho'.lc),
-        'i want to procure someone from Idaho';
-
-## 8
-ok $pCOMMAND.parse('show me some java delopers from MidWest resumes'.lc),
-        'show me some java delopers from MidWest resumes';
-
-## 9
-ok $pCOMMAND.parse('show me some data scientist resumes'.lc),
-        'show me some data scientist resumes';
-
-## 10
-ok $pCOMMAND.parse('suggest a resume from California with semi conductors experience'.lc),
-        'suggest a resume from California with semi conductors experience';
+ok $pCOMMAND.parse('recommend job descriptions with java development, software architect, agile, and agile coach'.lc),
+        'recommend job descriptions with java development, software architect, agile, and agile coach';
 
 
 done-testing;
