@@ -1,0 +1,43 @@
+{
+  "perl": "6.d",
+  "name": "DSL::English::RecruitingWorkflows",
+  "api": "1",
+  "auth": "github:antononcube",
+  "version": "0.1.0",
+  "description": "Recruiting workflows building by natural language commands.",
+  "authors": [
+    "Anton Antonov"
+  ],
+  "license": "GPL-3.0-or-later",
+  "provides": {
+    "DSL::English::RecruitingWorkflows": "lib/DSL/English/RecruitingWorkflows.rakumod",
+    "DSL::English::RecruitingWorkflows::Actions::Bulgarian::Standard": "lib/DSL/English/RecruitingWorkflows/Actions/Bulgarian/Standard.rakumod",
+    "DSL::English::RecruitingWorkflows::Actions::WL::System": "lib/DSL/English/RecruitingWorkflows/Actions/WL/System.rakumod",
+    "DSL::English::RecruitingWorkflows::Grammar": "lib/DSL/English/RecruitingWorkflows/Grammar.rakumod",
+    "DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases": "lib/DSL/English/RecruitingWorkflows/Grammar/RecruitingPhrases.rakumod",
+    "DSL::English::RecruitingWorkflows::Grammar::IngredientSpec": "lib/DSL/English/RecruitingWorkflows/Grammar/IngredientSpec.rakumod",
+    "DSL::English::RecruitingWorkflows::Grammar::IngredientQuery": "lib/DSL/English/RecruitingWorkflows/Grammar/IngredientQuery.rakumod",
+    "DSL::English::RecruitingWorkflows::Grammar::IntrospectionQuery": "lib/DSL/English/RecruitingWorkflows/Grammar/IntrospectionQuery.rakumod",
+    "DSL::English::RecruitingWorkflows::Grammar::RecommendationsCommand": "lib/DSL/English/RecruitingWorkflows/Grammar/RecommendationsCommand.rakumod"
+  },
+  "depends": [
+    "DSL::Shared",
+    "DSL::Entity::Jobs",
+    "DSL::Entity::Geographics"
+  ],
+  "build-depends": [],
+  "test-depends": [],
+  "resources": [],
+  "tags": [
+    "talent",
+    "jobs",
+    "procurement",
+    "recommendation",
+    "parser",
+    "interpreter",
+    "monad",
+    "workflow",
+    "pipeline"
+  ],
+  "source-url": "https://github.com/antononcube/Raku-DSL-English-RecruitingWorkflows.git"
+}

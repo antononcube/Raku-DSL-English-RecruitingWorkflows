@@ -36,7 +36,7 @@ use DSL::Shared::Roles::English::PipelineCommand;
 use DSL::Shared::Roles::PredicateSpecification;
 use DSL::Shared::Roles::ErrorHandling;
 
-use DSL::English::RecruitingWorkflows::Grammar::TalentQuery;
+use DSL::English::RecruitingWorkflows::Grammar::IngredientQuery;
 use DSL::English::RecruitingWorkflows::Grammar::IntrospectionQuery;
 use DSL::English::RecruitingWorkflows::Grammar::RecommendationsCommand;
 use DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases;
@@ -45,17 +45,18 @@ grammar DSL::English::RecruitingWorkflows::Grammar
         does DSL::Shared::Roles::English::PipelineCommand
         does DSL::Shared::Roles::ErrorHandling
         does DSL::English::RecruitingWorkflows::Grammar::IntrospectionQuery
-        does DSL::English::RecruitingWorkflows::Grammar::TalentQuery
+        does DSL::English::RecruitingWorkflows::Grammar::IngredientQuery
         does DSL::English::RecruitingWorkflows::Grammar::RecommendationsCommand
         does DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases {
 
     # TOPa
     rule TOP {
         <pipeline-command> ||
-        <ingredient-query-command> ||
         <introspection-query-command> ||
+        <ingredient-query-command> ||
         <recommendations-by-profile-command> ||
         <recommendations-command> ||
+        <data-entity-command>
         <recommend-for-job-command> }
 
     rule job-entity-spec { <entity-job-title> | <entity-job-skill> }
