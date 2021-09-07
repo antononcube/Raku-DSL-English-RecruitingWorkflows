@@ -39,9 +39,9 @@
 - Implementation-wise.
 ** TODO Leverage analogy with [[https://github.com/antononcube/Raku-DSL-English-FoodPreparationWorkflows][DSL::English::FoodPreparationWorkflows]]
 - Consider the following mapping / replacements:
-  | Action   | FoodPreparationWorkflows   | DataAcquisitionWorkflows     |
+  | Action   | FoodPreparationWorkflows   | RecruitingWorkflows          |
   |----------+----------------------------+------------------------------|
-  |          | <ate-phrase>               | <procured-phrase>            |
+  | replace  | <ate-phrase>               | <procured-phrase>            |
   |          | <cook-phrase>              | <prepare-phrase>             |
   |          | <cooked-phrase>            | <prepared-phrase>            |
   |          | <cooking-phrase>           | <preparing-phrase>           |
@@ -62,6 +62,33 @@
   | remove   | <allergic-reaction-phrase> |                              |
   | remove   | <entity-country-adjective> |                              |
   | remove   | <entity-region-name>       |                              |
+** TODO Leverage analogy with [[https://github.com/antononcube/Raku-DSL-English-DataAcquistionsWorkflows][DSL::English::DataAcquistionWorkflows]]
+- Consider the following mapping / replacements:
+  | Action         | DataAcquistionWorkflows     | RecruitingWorkflows       |
+  |----------------+-----------------------------+---------------------------|
+  | keep           | <data-with-quality-spec*>   |                           |
+  |                | <data-quality-spec*>        |                           |
+  |                | <ingredient-spec*>          |                           |
+  |                | <data-non-property-spec>    |                           |
+  |                | <ingredient-query-command > |                           |
+  |----------------+-----------------------------+---------------------------|
+  | replace        | <recipe-phrase>             | <job-description-phrase>  |
+  |                | <data-acquirer-spec>        | <head-huntress-spec>      |
+  |----------------+-----------------------------+---------------------------|
+  | expand with    | <acquisition-phrase>        | <procurement-phrase>      |
+  |----------------+-----------------------------+---------------------------|
+  | redefine       | <ingredient-spec>           |                           |
+  |                | <recruiting-item-phrase>       |                           |
+  |----------------+-----------------------------+---------------------------|
+  | remove         | <allergic-reaction-phrase>  |                           |
+  |                | <entity-country-adjective>  |                           |
+  |                | <entity-region-name>        |                           |
+  |----------------+-----------------------------+---------------------------|
+  | add/include to | <acquir*>                   | <procure*>                |
+  |----------------+-----------------------------+---------------------------|
+  | add            |                             | <resume*-recruiting-word> |
+  |                |                             | <talent*-recruiting-word> |
+  |                |                             | <job*-recruiting-word>    |
 ** TODO Job titles an skill entities package [66%] [2/3]
 - [[https://github.com/antononcube/Raku-DSL-Entity-Jobs][DSL::Entity::Jobs]]
 - [X] First version of the metadata entities package.
