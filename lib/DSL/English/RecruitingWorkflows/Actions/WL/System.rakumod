@@ -30,12 +30,11 @@
 
 use v6;
 
-use DSL::English::RecruitingWorkflows::Grammar;
-use DSL::Shared::Actions::English::WL::PipelineCommand;
-use DSL::Shared::Actions::English::TimeIntervalSpec;
-use DSL::Shared::Entity::Actions::WL::System;
 use DSL::Entity::Geographics::Actions::WL::System;
 use DSL::Entity::Jobs::Actions::WL::System;
+use DSL::Shared::Actions::English::TimeIntervalSpec;
+use DSL::Shared::Actions::English::WL::PipelineCommand;
+use DSL::Shared::Entity::Actions::WL::System;
 
 
 class DSL::English::RecruitingWorkflows::Actions::WL::System
@@ -144,9 +143,14 @@ class DSL::English::RecruitingWorkflows::Actions::WL::System
     ## Recommendations
     ##=====================================================
     method recommendations-command($/) {
+        my $nrecs = '';
         my Str $actionPred = '';
         if $<acquire-phrase> { $actionPred = '"Action:Acquire"'}
         elsif $<analyze-phrase> { $actionPred = '"Action:Analyze"'}
+
+        if $<top-nrecs-spec> {
+            $nrecs = ', ' ~ $<top-nrecs-spec>.made;
+        }
 
         my Str $prof =
                 do if self.makeUserIDTag().chars > 0 && $actionPred.chars > 0 { '{' ~ ( self.makeUserIDTag(), $actionPred).join(',') ~ '}' }
@@ -154,7 +158,7 @@ class DSL::English::RecruitingWorkflows::Actions::WL::System
                 elsif $actionPred.chars > 0 { $actionPred }
                 else {'' }
 
-        make 'smrHHG ==> SMRMonRecommendByProfile[' ~ $prof ~ '] ==> SMRMonJoinAcross["Warning"->False] ==> SMRMonTakeValue[]';
+        make 'smrHHG ==> SMRMonRecommendByProfile[' ~ $prof ~ $nrecs ~ '] ==> SMRMonJoinAcross["Warning"->False] ==> SMRMonTakeValue[]';
     }
 
     ##=====================================================
@@ -173,8 +177,13 @@ class DSL::English::RecruitingWorkflows::Actions::WL::System
     }
 
     method recommendations-by-profile-main($/) {
+        my $nrecs = '';
         my Str $smrObj = 'smrHHGResumes';
         my Str @resProfile;
+
+        if $<top-nrecs-spec> {
+            $nrecs = ', ' ~ $<top-nrecs-spec>.made;
+        }
 
         if $<data-quality-spec> {
              @resProfile.append($<data-quality-spec>.made)
@@ -229,7 +238,7 @@ class DSL::English::RecruitingWorkflows::Actions::WL::System
         }
 
         #make to_DSL_code('USE TARGET SMRMon-R; use smrHHG; recommend by profile ' ~ @resProfile.join(', ') ~ '; echo pipeline value;');
-        make $smrObj ~ ' ==> SMRMonRecommendByProfile[ {' ~ @resProfile.join(', ') ~ '} ] ==> SMRMonJoinAcross["Warning"->False] ==> SMRMonTakeValue[]';
+        make $smrObj ~ ' ==> SMRMonRecommendByProfile[ {' ~ @resProfile.join(', ') ~ '}' ~ $nrecs ~ '] ==> SMRMonJoinAcross["Warning"->False] ==> SMRMonTakeValue[]';
     }
 
     ##=====================================================
@@ -276,6 +285,10 @@ class DSL::English::RecruitingWorkflows::Actions::WL::System
     ##=====================================================
     ## Fundamental tokens / rules
     ##=====================================================
+    method top-nrecs-spec($/) {
+        make $<integer-value>.made;
+    }
+
     method data-source-spec($/, :$tag = True) {
         make $tag ?? '"DataCategory:' ~ $/.Str.trim.lc ~ '"' !! '"' ~ $/.Str.trim.lc ~ '"';
     }

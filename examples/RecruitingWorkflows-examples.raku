@@ -29,9 +29,10 @@ sub daw-interpret( Str:D $command,
 say "=" x 60;
 #my $cmd = "can hhg recommend talent that has the skills java, spring, and agile";
 #my $cmd = "recommend talent that has the skills java, spring, and agile";
-my $cmd = "recommend talent that has the job titles java developer, software architect, and agile coach";
+#my $cmd = "recommend talent that has the job titles java developer, software architect, and agile coach";
 #my $cmd = "recommend jobs that has java development, software architect, agile, and agile coach";
-#my $cmd = "recommend job descriptions with java development, software architect, agile, and agile coach";
+#my $cmd = "recommend top 20 job descriptions for java development, software architect, agile, and agile coach";
+my $cmd = "recommend job descriptions for java";
 
 say daw-subparse( $cmd, rule => 'TOP' );
 
@@ -43,6 +44,11 @@ say daw-interpret(
         actions => DSL::English::RecruitingWorkflows::Actions::WL::System.new );
 
 say "=" x 60;
+
+say ToRecruitingWorkflowCode($cmd);
+
+say "=" x 60;
+
 #============================================================
 # Recommendations by profile
 #============================================================

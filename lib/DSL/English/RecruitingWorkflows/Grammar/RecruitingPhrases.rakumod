@@ -20,6 +20,11 @@ role DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases
     }
 
     ##-------------------------------------------------------
+    rule top-nrecs-spec {
+        <.top-noun>? <.number-of>? <integer-value> <.of-preposition>? <.recommendations-phrase>? <.for-preposition>?
+    }
+
+    ##-------------------------------------------------------
     # Recruiting item is a 1) job (description) or opportunity, and 2) resume or talent.
     rule recruiting-item-phrase {
         <talent-resume-phrase> | <job-description-phrase>
