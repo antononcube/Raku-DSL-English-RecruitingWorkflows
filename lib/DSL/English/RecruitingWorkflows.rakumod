@@ -15,7 +15,7 @@ interpretation of natural language commands that specify recruiting (of talent f
 
 unit module DSL::English::RecruitingWorkflows;
 
-use DSL::Shared::Utilities::MetaSpecsProcessing;
+use DSL::Shared::Utilities::CommandProcessing;
 
 use DSL::English::RecruitingWorkflows::Grammar;
 use DSL::English::RecruitingWorkflows::Actions::WL::System;
@@ -47,30 +47,11 @@ sub has-semicolon (Str $word) {
 #-----------------------------------------------------------
 proto ToRecruitingWorkflowCode(Str $command, Str $target = 'WL-System' ) is export {*}
 
-multi ToRecruitingWorkflowCode ( Str $command where not has-semicolon($command), Str $target = 'WL-System' ) {
+multi ToRecruitingWorkflowCode ( Str $command, Str $target = 'WL-System' ) {
 
-    die 'Unknown target.' unless %targetToAction{$target}:exists;
-
-    my $match = DSL::English::RecruitingWorkflows::Grammar.parse($command.trim, actions => %targetToAction{$target}.new );
-    die 'Cannot parse the given command.' unless $match;
-    return $match.made;
-}
-
-multi ToRecruitingWorkflowCode ( Str $command where has-semicolon($command), Str $target = 'WL-System' ) {
-
-    my $specTarget = get-dsl-spec( $command, 'target');
-
-    $specTarget = $specTarget ?? $specTarget<DSLTARGET> !! $target;
-
-    die 'Unknown target.' unless %targetToAction{$specTarget}:exists;
-
-    my @commandLines = $command.trim.split(/ ';' \s* /);
-
-    @commandLines = grep { $_.Str.chars > 0 }, @commandLines;
-
-    my @cmdLines = map { ToRecruitingWorkflowCode($_, $specTarget) }, @commandLines;
-
-    @cmdLines = grep { $_.^name eq 'Str' }, @cmdLines;
-
-    return @cmdLines.join( %targetToSeparator{$specTarget} ).trim;
+    DSL::Shared::Utilities::CommandProcessing::ToWorkflowCode( $command,
+                                                               grammar => DSL::English::RecruitingWorkflows::Grammar,
+                                                               :%targetToAction,
+                                                               :%targetToSeparator,
+                                                               :$target )
 }
