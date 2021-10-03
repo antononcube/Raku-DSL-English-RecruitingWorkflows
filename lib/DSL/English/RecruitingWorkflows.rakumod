@@ -47,11 +47,12 @@ sub has-semicolon (Str $word) {
 #-----------------------------------------------------------
 proto ToRecruitingWorkflowCode(Str $command, Str $target = 'WL-System' ) is export {*}
 
-multi ToRecruitingWorkflowCode ( Str $command, Str $target = 'WL-System' ) {
+multi ToRecruitingWorkflowCode (Str $command, Str $target = 'WL-System', :$userID = '') {
 
     DSL::Shared::Utilities::CommandProcessing::ToWorkflowCode( $command,
                                                                grammar => DSL::English::RecruitingWorkflows::Grammar,
                                                                :%targetToAction,
                                                                :%targetToSeparator,
-                                                               :$target )
+                                                               :$target,
+                                                               :$userID)
 }
