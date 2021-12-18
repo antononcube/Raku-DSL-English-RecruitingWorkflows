@@ -27,6 +27,7 @@ my %targetToAction =
     "Mathematica"      => DSL::English::RecruitingWorkflows::Actions::WL::System,
     "WL"               => DSL::English::RecruitingWorkflows::Actions::WL::System,
     "WL-System"        => DSL::English::RecruitingWorkflows::Actions::WL::System,
+    "WL::System"       => DSL::English::RecruitingWorkflows::Actions::WL::System,
     "Bulgarian"        => DSL::English::RecruitingWorkflows::Actions::Bulgarian::Standard;
 
 my %targetToSeparator{Str} =
@@ -40,19 +41,14 @@ my %targetToSeparator{Str} =
 
 
 #-----------------------------------------------------------
-sub has-semicolon (Str $word) {
-    return defined index $word, ';';
-}
+proto ToRecruitingWorkflowCode(Str $command, Str $target = 'WL-System', |) is export {*}
 
-#-----------------------------------------------------------
-proto ToRecruitingWorkflowCode(Str $command, Str $target = 'WL-System' ) is export {*}
-
-multi ToRecruitingWorkflowCode (Str $command, Str $target = 'WL-System', :$userID = '') {
+multi ToRecruitingWorkflowCode (Str $command, Str $target = 'WL-System', *%args ) {
 
     DSL::Shared::Utilities::CommandProcessing::ToWorkflowCode( $command,
                                                                grammar => DSL::English::RecruitingWorkflows::Grammar,
                                                                :%targetToAction,
                                                                :%targetToSeparator,
                                                                :$target,
-                                                               :$userID)
+                                                               |%args)
 }
