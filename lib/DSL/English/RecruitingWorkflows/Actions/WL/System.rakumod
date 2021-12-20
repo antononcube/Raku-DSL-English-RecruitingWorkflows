@@ -57,6 +57,9 @@ class DSL::English::RecruitingWorkflows::Actions::WL::System
         'AbsoluteTime[DateObject["' ~ %tiSpec<From> ~ '"]] <= AbsoluteTime[#Timestamp] <= AbsoluteTime[DateObject["' ~ %tiSpec<To> ~ '"]]'
     }
 
+    # Separator
+    method separator() { " \\[DoubleLongRightArrow]\n" }
+
     ##=====================================================
     ## TOP
     ##=====================================================
@@ -167,7 +170,7 @@ class DSL::English::RecruitingWorkflows::Actions::WL::System
                 elsif $actionPred.chars > 0 { $actionPred }
                 else { '' }
 
-        make 'smrHHG ==> SMRMonRecommendByProfile[' ~ $prof ~ $nrecs ~ '] ==> SMRMonJoinAcross["Warning"->False] ==> SMRMonTakeValue[]';
+        make 'smrHHG \[DoubleLongRightArrow] SMRMonRecommendByProfile[' ~ $prof ~ $nrecs ~ '] \[DoubleLongRightArrow] SMRMonJoinAcross["Warning"->False] \[DoubleLongRightArrow] SMRMonTakeValue[]';
     }
 
     ##=====================================================
@@ -247,8 +250,8 @@ class DSL::English::RecruitingWorkflows::Actions::WL::System
         }
 
         #make to_DSL_code('USE TARGET SMRMon-R; use smrHHG; recommend by profile ' ~ @resProfile.join(', ') ~ '; echo pipeline value;');
-        make $smrObj ~ ' ==> SMRMonRecommendByProfile[ {' ~ @resProfile
-                .join(', ') ~ '}' ~ $nrecs ~ '] ==> SMRMonJoinAcross["Warning"->False] ==> SMRMonTakeValue[]';
+        make $smrObj ~ ' \[DoubleLongRightArrow] SMRMonRecommendByProfile[ {' ~ @resProfile
+                .join(', ') ~ '}' ~ $nrecs ~ '] \[DoubleLongRightArrow] SMRMonJoinAcross["Warning"->False] \[DoubleLongRightArrow] SMRMonTakeValue[]';
     }
 
     ##=====================================================
