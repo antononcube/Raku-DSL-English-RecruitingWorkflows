@@ -2,12 +2,10 @@ use v6;
 
 use DSL::Shared::Roles::English::PipelineCommand;
 use DSL::Shared::Utilities::FuzzyMatching;
-use DSL::Entity::Jobs::Grammar::EntityNames;
-use DSL::Entity::Geographics::Grammar::EntityNames;
+use DSL::Shared::Entity::Grammar::EntityNames;
 
 role DSL::English::RecruitingWorkflows::Grammar::IngredientSpec
-        does DSL::Entity::Jobs::Grammar::EntityNames
-        does DSL::Entity::Geographics::Grammar::EntityNames
+        does DSL::Shared::Entity::Grammar::EntityNames
         does DSL::Shared::Roles::English::PipelineCommand {
 
     rule enhanced-data-with-quality-spec-list { <skill-spec-list> || <job-title-spec-list> || <data-with-quality-spec-list> }
@@ -39,4 +37,12 @@ role DSL::English::RecruitingWorkflows::Grammar::IngredientSpec
         <entity-job-skill> |
         <entity-country-name> |
         <entity-region-name> }
+
+    regex entity-job-title {
+        ( [ <.wbpl> <entity-name-part> <.wbpr> ]+ % \h+ ) <?{ self.get-jobs-resources().known-name('Title', $0.Str.lc) }>
+    }
+
+    regex entity-job-skill {
+        ( [ <.wbpl> <entity-name-part> <.wbpr> ]+ % \h+ ) <?{ self.get-jobs-resources().known-name('Skill', $0.Str.lc) }>
+    }
 }

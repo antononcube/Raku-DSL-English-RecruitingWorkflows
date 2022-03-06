@@ -39,14 +39,15 @@ use DSL::Shared::Entity::Actions::WL::System;
 
 class DSL::English::RecruitingWorkflows::Actions::WL::System
         is DSL::Shared::Actions::English::TimeIntervalSpec
-        is DSL::Entity::Geographics::Actions::WL::System
-        is DSL::Entity::Jobs::Actions::WL::System
         is DSL::Shared::Entity::Actions::WL::System {
 
     ##=====================================================
     ## General
     ##=====================================================
     has Str $.userID;
+
+    has DSL::Entity::Jobs::Actions::WL::System $.jobsActions;
+    has DSL::Entity::Geographics::Actions::WL::System $.geoActions;
 
     method makeUserIDTag() {
         (!$.userID.defined or $.userID.chars == 0 or $.userID (elem) <NONE NULL>) ?? '' !! '"UserID:' ~ $.userID ~ '"';
@@ -392,12 +393,12 @@ class DSL::English::RecruitingWorkflows::Actions::WL::System
     }
 
     method entity-job-title($/) {
-        my $ename = DSL::Entity::Jobs::Actions::WL::System.entity-job-title($/);
+        my $ename = $!jobsActions.entity-job-title($/);
         make '"Title:' ~ $ename.substr(1, *- 1).subst(:g, ' ', '.') ~ '"';
     }
 
     method entity-job-skill($/) {
-        my $ename = DSL::Entity::Jobs::Actions::WL::System.entity-job-skill($/);
+        my $ename = $!jobsActions.entity-job-skill($/);
         make '"Skill:' ~ $ename.substr(1, *- 1).subst(:g, ' ', '.') ~ '"';
     }
 

@@ -41,6 +41,9 @@ use DSL::English::RecruitingWorkflows::Grammar::IntrospectionQuery;
 use DSL::English::RecruitingWorkflows::Grammar::RecommendationsCommand;
 use DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases;
 
+use DSL::Entity::Jobs::ResourceAccess;
+use DSL::Entity::Geographics::ResourceAccess;
+
 grammar DSL::English::RecruitingWorkflows::Grammar
         does DSL::Shared::Roles::English::PipelineCommand
         does DSL::Shared::Roles::ErrorHandling
@@ -49,7 +52,13 @@ grammar DSL::English::RecruitingWorkflows::Grammar
         does DSL::English::RecruitingWorkflows::Grammar::RecommendationsCommand
         does DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases {
 
-    # TOPa
+    my DSL::Entity::Jobs::ResourceAccess $jobsResources;
+    my DSL::Entity::Geographics::ResourceAccess $geoResources;
+
+    method get-jobs-resources(--> DSL::Entity::Jobs::ResourceAccess) { return $jobsResources; }
+    method set-jobs-resources(DSL::Entity::Jobs::ResourceAccess $obj) { $jobsResources = $obj; }
+
+    # TOP
     rule TOP {
         <pipeline-command> ||
         <introspection-query-command> ||

@@ -4,11 +4,8 @@ use DSL::Shared::Roles::English::PipelineCommand;
 use DSL::Shared::Roles::English::CommonSpeechParts;
 use DSL::Shared::Utilities::FuzzyMatching;
 
-use DSL::Entity::Jobs::Grammar::EntityNames;
-
 # Food preparation specific phrases
 role DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases
-        does DSL::Entity::Jobs::Grammar::EntityNames
         does DSL::Shared::Roles::English::PipelineCommand {
 
     rule recommend-phrase {

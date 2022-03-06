@@ -4,11 +4,30 @@ use lib '.';
 
 use DSL::English::RecruitingWorkflows;
 
+use DSL::Entity::Jobs;
+
 use DSL::English::RecruitingWorkflows::Actions::WL::System;
 use DSL::English::RecruitingWorkflows::Actions::R::base;
 
 #-----------------------------------------------------------
+sub get-geo-resources() {
+        use DSL::Entity::Geographics;
+        get-entity-resources-access-object()
+}
+
+
+sub get-jobs-resources() {
+        use DSL::Entity::Jobs;
+        get-entity-resources-access-object()
+}
+
+my DSL::Entity::Geographics::Actions::WL::System $geoActions  .= new( resources => get-geo-resources()  );
+my DSL::Entity::Jobs::Actions::WL::System        $jobsActions .= new( resources => get-jobs-resources() );
+
+#-----------------------------------------------------------
 my $pCOMMAND = DSL::English::RecruitingWorkflows::Grammar;
+
+$pCOMMAND.set-jobs-resources(get-jobs-resources());
 
 sub daw-parse( Str:D $command, Str:D :$rule = 'TOP' ) {
     $pCOMMAND.parse($command, :$rule);
@@ -20,7 +39,7 @@ sub daw-subparse( Str:D $command, Str:D :$rule = 'TOP' ) {
 
 sub daw-interpret( Str:D $command,
                    Str:D:$rule = 'TOP',
-                   :$actions = DSL::English::RecruitingWorkflows::Actions::WL::System.new) {
+                   :$actions = DSL::English::RecruitingWorkflows::Actions::WL::System.new(:$geoActions, :$jobsActions )) {
     $pCOMMAND.parse( $command, :$rule, :$actions ).made;
 }
 
@@ -30,9 +49,9 @@ say "=" x 60;
 #my $cmd = "can hhg recommend talent that has the skills java, spring, and agile";
 #my $cmd = "recommend talent that has the skills java, spring, and agile";
 #my $cmd = "recommend talent that has the job titles java developer, software architect, and agile coach";
-#my $cmd = "recommend jobs that has java development, software architect, agile, and agile coach";
-#my $cmd = "recommend top 20 job descriptions for java development, software architect, agile, and agile coach";
-my $cmd = "recommend job descriptions for java";
+#my $cmd = "recommend jobs that have java development, software architect, agile, and agile coach";
+my $cmd = "recommend top 20 job descriptions for java develpment, softwre architect, agile, and agile coach";
+#my $cmd = "recommend job descriptions for java";
 
 say daw-subparse( $cmd, rule => 'TOP' );
 
@@ -41,11 +60,11 @@ say '-' x 60;
 say daw-interpret(
         $cmd,
         rule => 'TOP',
-        actions => DSL::English::RecruitingWorkflows::Actions::WL::System.new );
+        actions => DSL::English::RecruitingWorkflows::Actions::WL::System.new(:$geoActions, :$jobsActions));
 
 say "=" x 60;
 
-say ToRecruitingWorkflowCode($cmd);
+say ToRecruitingWorkflowCode($cmd, 'WL-System', format => 'hash');
 
 say "=" x 60;
 
