@@ -38,6 +38,22 @@ role DSL::English::RecruitingWorkflows::Grammar::IngredientSpec
         <entity-country-name> |
         <entity-region-name> }
 
+    regex entity-country-adjective {
+        ( [ <.wbpl> <entity-name-part> <.wbpr> ]+ % \h+ ) <?{ self.get-geographics-resources().known-name('Country-Adjective', $0.Str.lc) }>
+    }
+
+    regex entity-country-name {
+        ( [ <.wbpl> <entity-name-part> <.wbpr> ]+ % \h+ ) <?{ self.get-geographics-resources().known-name('Country', $0.Str.lc) }>
+    }
+
+    regex entity-region-adjective {
+        (<word-value>+ % \h+ ) <?{ self.get-geographics-resources().known-name( 'Region-Adjective', $0.Str.lc) }>
+    }
+
+    regex entity-region-name {
+        ( <word-value>+ % \h+ ) <?{ self.get-geographics-resources().known-name('Region', $0.Str.lc) }>
+    }
+
     regex entity-job-title {
         ( [ <.wbpl> <entity-name-part> <.wbpr> ]+ % \h+ ) <?{ self.get-jobs-resources().known-name('Title', $0.Str.lc) }>
     }
