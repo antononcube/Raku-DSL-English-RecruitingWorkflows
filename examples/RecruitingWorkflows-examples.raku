@@ -4,30 +4,20 @@ use lib '.';
 
 use DSL::English::RecruitingWorkflows;
 
-use DSL::Entity::Jobs;
-
 use DSL::English::RecruitingWorkflows::Actions::WL::System;
 use DSL::English::RecruitingWorkflows::Actions::R::base;
 
+use DSL::Entity::Geographics;
+use DSL::Entity::Jobs;
+
 #-----------------------------------------------------------
-sub get-geo-resources() {
-        use DSL::Entity::Geographics;
-        get-entity-resources-access-object()
-}
-
-
-sub get-jobs-resources() {
-        use DSL::Entity::Jobs;
-        get-entity-resources-access-object()
-}
-
-my DSL::Entity::Geographics::Actions::WL::System $geoActions  .= new( resources => get-geo-resources()  );
-my DSL::Entity::Jobs::Actions::WL::System        $jobsActions .= new( resources => get-jobs-resources() );
+my DSL::Entity::Geographics::Actions::WL::System $geoActions  .= new( resources => DSL::Entity::Geographics::resource-access-object()  );
+my DSL::Entity::Jobs::Actions::WL::System        $jobsActions .= new( resources => DSL::Entity::Jobs::resource-access-object() );
 
 #-----------------------------------------------------------
 my $pCOMMAND = DSL::English::RecruitingWorkflows::Grammar;
 
-$pCOMMAND.set-jobs-resources(get-jobs-resources());
+$pCOMMAND.set-jobs-resources(DSL::Entity::Jobs::resource-access-object());
 
 sub daw-parse( Str:D $command, Str:D :$rule = 'TOP' ) {
     $pCOMMAND.parse($command, :$rule);
@@ -55,6 +45,8 @@ my $cmd = "recommend top 20 job descriptions for java develpment, softwre archit
 
 say daw-subparse( $cmd, rule => 'TOP' );
 
+say '=' x 60;
+say 'daw-interpret';
 say '-' x 60;
 
 say daw-interpret(
@@ -63,7 +55,8 @@ say daw-interpret(
         actions => DSL::English::RecruitingWorkflows::Actions::WL::System.new(:$geoActions, :$jobsActions));
 
 say "=" x 60;
-
+say " ToRecruitingWorkflowCode ";
+say "-" x 60;
 say ToRecruitingWorkflowCode($cmd, 'WL-System', format => 'hash');
 
 say "=" x 60;
