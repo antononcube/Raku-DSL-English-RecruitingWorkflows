@@ -22,6 +22,9 @@ use DSL::English::RecruitingWorkflows::Actions::WL::System;
 
 use DSL::English::RecruitingWorkflows::Actions::Bulgarian::Standard;
 
+use DSL::Entity::Geographics;
+use DSL::Entity::Jobs;
+
 #-----------------------------------------------------------
 my %targetToAction =
     "Mathematica"      => DSL::English::RecruitingWorkflows::Actions::WL::System,
@@ -51,19 +54,9 @@ my Str %targetToSeparator2{Str} = %targetToSeparator.grep({ $_.key.contains('-')
 
 
 #-----------------------------------------------------------
-sub get-geo-resources() {
-    use DSL::Entity::Geographics;
-    get-entity-resources-access-object()
-}
+my DSL::Entity::Geographics::Actions::WL::System $geoActions  .= new( resources => DSL::Entity::Geographics::resource-access-object()  );
+my DSL::Entity::Jobs::Actions::WL::System        $jobsActions .= new( resources => DSL::Entity::Jobs::resource-access-object() );
 
-
-sub get-jobs-resources() {
-    use DSL::Entity::Jobs;
-    get-entity-resources-access-object()
-}
-
-my DSL::Entity::Geographics::Actions::WL::System $geoActions  .= new( resources => get-geo-resources()  );
-my DSL::Entity::Jobs::Actions::WL::System        $jobsActions .= new( resources => get-jobs-resources() );
 
 #-----------------------------------------------------------
 proto ToRecruitingWorkflowCode(Str $command, Str $target = 'WL-System', |) is export {*}
@@ -71,7 +64,8 @@ proto ToRecruitingWorkflowCode(Str $command, Str $target = 'WL-System', |) is ex
 multi ToRecruitingWorkflowCode (Str $command, Str $target = 'WL-System', *%args ) {
 
     my $pCOMMAND = DSL::English::RecruitingWorkflows::Grammar;
-    $pCOMMAND.set-jobs-resources(DSL::Entity::Jobs::get-entity-resources-access-object());
+    $pCOMMAND.set-geographics-resources(DSL::Entity::Geographics::resource-access-object());
+    $pCOMMAND.set-jobs-resources(DSL::Entity::Jobs::resource-access-object());
 
     my $ACTOBJ = %targetToAction{$target}.new(:$geoActions, :$jobsActions);
 

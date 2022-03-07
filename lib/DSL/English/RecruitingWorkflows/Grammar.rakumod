@@ -41,8 +41,8 @@ use DSL::English::RecruitingWorkflows::Grammar::IntrospectionQuery;
 use DSL::English::RecruitingWorkflows::Grammar::RecommendationsCommand;
 use DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases;
 
-use DSL::Entity::Jobs::ResourceAccess;
 use DSL::Entity::Geographics::ResourceAccess;
+use DSL::Entity::Jobs::ResourceAccess;
 
 grammar DSL::English::RecruitingWorkflows::Grammar
         does DSL::Shared::Roles::English::PipelineCommand
@@ -52,8 +52,11 @@ grammar DSL::English::RecruitingWorkflows::Grammar
         does DSL::English::RecruitingWorkflows::Grammar::RecommendationsCommand
         does DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases {
 
+    my DSL::Entity::Geographics::ResourceAccess $geographicsResources;
     my DSL::Entity::Jobs::ResourceAccess $jobsResources;
-    my DSL::Entity::Geographics::ResourceAccess $geoResources;
+
+    method get-geographics-resources(--> DSL::Entity::Geographics::ResourceAccess) { return $geographicsResources; }
+    method set-geographics-resources(DSL::Entity::Geographics::ResourceAccess $obj) { $geographicsResources = $obj; }
 
     method get-jobs-resources(--> DSL::Entity::Jobs::ResourceAccess) { return $jobsResources; }
     method set-jobs-resources(DSL::Entity::Jobs::ResourceAccess $obj) { $jobsResources = $obj; }
@@ -65,7 +68,6 @@ grammar DSL::English::RecruitingWorkflows::Grammar
         <ingredient-query-command> ||
         <recommendations-by-profile-command> ||
         <recommendations-command> ||
-        <data-entity-command>
         <recommend-for-job-command> }
 
     rule job-entity-spec { <entity-job-title> | <entity-job-skill> }
