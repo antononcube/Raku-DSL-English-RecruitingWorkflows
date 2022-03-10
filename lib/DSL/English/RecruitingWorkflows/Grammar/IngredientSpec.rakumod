@@ -38,6 +38,9 @@ role DSL::English::RecruitingWorkflows::Grammar::IngredientSpec
         <entity-country-name> |
         <entity-region-name> }
 
+    #--------------------------------------------------------
+    # Entity names parsing
+    #--------------------------------------------------------
     regex entity-country-adjective {
         ( [ <.wbpl> <entity-name-part> <.wbpr> ]+ % \h+ ) <?{ self.get-geographics-resources().known-name('Country-Adjective', $0.Str.lc) }>
     }
