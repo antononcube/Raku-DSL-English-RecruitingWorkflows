@@ -46,8 +46,8 @@ class DSL::English::RecruitingWorkflows::Actions::WL::System
     ##=====================================================
     has Str $.userID;
 
-    has DSL::Entity::Jobs::Actions::WL::System $.jobsActions;
     has DSL::Entity::Geographics::Actions::WL::System $.geoActions;
+    has DSL::Entity::Jobs::Actions::WL::System $.jobsActions;
 
     method makeUserIDTag() {
         (!$.userID.defined or $.userID.chars == 0 or $.userID (elem) <NONE NULL>) ?? '' !! '"UserID:' ~ $.userID ~ '"';
