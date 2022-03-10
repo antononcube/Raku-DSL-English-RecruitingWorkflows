@@ -47,8 +47,8 @@ class DSL::English::RecruitingWorkflows::Actions::Bulgarian::Standard
     ##=====================================================
     has Str $.userID;
 
-    has DSL::Entity::Jobs::Actions::WL::System $.jobsActions;
     has DSL::Entity::Geographics::Actions::WL::System $.geoActions;
+    has DSL::Entity::Jobs::Actions::WL::System $.jobsActions;
 
     # method TOP($/) { make $/.values[0].made; }
 
