@@ -44,7 +44,7 @@ class DSL::English::RecruitingWorkflows::Actions::WL::System
     ##=====================================================
     ## General
     ##=====================================================
-    has Str $.userID;
+    has Str $.userID is rw;
 
     has DSL::Entity::Geographics::Actions::WL::System $.geoActions;
     has DSL::Entity::Jobs::Actions::WL::System $.jobsActions;
