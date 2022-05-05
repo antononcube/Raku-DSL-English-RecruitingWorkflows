@@ -1,13 +1,19 @@
 use lib './lib';
 use lib '.';
 use DSL::English::RecruitingWorkflows;
+
+use DSL::Entity::Geographics;
+use DSL::Entity::Jobs;
+
 use Test;
 
-##===========================================================
-## Recommendations commands
-##===========================================================
-
 my $pCOMMAND = DSL::English::RecruitingWorkflows::Grammar;
+$pCOMMAND.set-jobs-resources(DSL::Entity::Jobs::resource-access-object());
+$pCOMMAND.set-geographics-resources(DSL::Entity::Geographics::resource-access-object());
+
+##===========================================================
+## Recommendation by profile commands
+##===========================================================
 
 plan 10;
 
