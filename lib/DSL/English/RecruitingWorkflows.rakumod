@@ -38,7 +38,7 @@ my %targetToAction2{Str} = %targetToAction.grep({ $_.key.contains('-') }).map({ 
 
 my %targetToSeparator{Str} =
     "Bulgarian"        => "\n",
-    "Mathematica"      => "\n",
+    "Mathematica"      => ";\n",
     "Python"           => "\n",
     "Python-Ecosystem" => "\n",
     "R"                => " ;\n",
@@ -69,9 +69,10 @@ multi ToRecruitingWorkflowCode (Str $command, Str $target = 'WL-System', *%args 
 
     my $ACTOBJ = %targetToAction{$target}.new(:$geoActions, :$jobsActions);
 
-    DSL::Shared::Utilities::CommandProcessing::ToWorkflowCode( $command,
-                                                               grammar => $pCOMMAND,
-                                                               actions => $ACTOBJ,
-                                                               separator => %targetToSeparator{$target},
-                                                               |%args )
+    DSL::Shared::Utilities::CommandProcessing::ToWorkflowCode($command,
+                                                              grammar => $pCOMMAND,
+                                                              targetToAction => %($target => $ACTOBJ),
+                                                              :%targetToSeparator,
+                                                              :$target,
+                                                              |%args )
 }
