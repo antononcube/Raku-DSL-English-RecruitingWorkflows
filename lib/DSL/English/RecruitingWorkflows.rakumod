@@ -59,9 +59,9 @@ my DSL::Entity::Jobs::Actions::WL::System        $jobsActions .= new( resources 
 
 
 #-----------------------------------------------------------
-proto ToRecruitingWorkflowCode(Str $command, Str $target = 'WL-System', |) is export {*}
+proto ToRecruitingWorkflowCode(Str $command, Str $target = 'WL-Ecosystem', |) is export {*}
 
-multi ToRecruitingWorkflowCode (Str $command, Str $target = 'WL-System', *%args ) {
+multi ToRecruitingWorkflowCode (Str $command, Str $target = 'WL-Ecosystem', *%args ) {
 
     my $pCOMMAND = DSL::English::RecruitingWorkflows::Grammar;
     $pCOMMAND.set-geographics-resources(DSL::Entity::Geographics::resource-access-object());
