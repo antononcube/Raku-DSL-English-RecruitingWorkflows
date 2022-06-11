@@ -18,7 +18,7 @@ unit module DSL::English::RecruitingWorkflows;
 use DSL::Shared::Utilities::CommandProcessing;
 
 use DSL::English::RecruitingWorkflows::Grammar;
-use DSL::English::RecruitingWorkflows::Actions::WL::System;
+use DSL::English::RecruitingWorkflows::Actions::WL::Ecosystem;
 
 use DSL::English::RecruitingWorkflows::Actions::Bulgarian::Standard;
 
@@ -27,10 +27,10 @@ use DSL::Entity::Jobs;
 
 #-----------------------------------------------------------
 my %targetToAction =
-    "Mathematica"      => DSL::English::RecruitingWorkflows::Actions::WL::System,
-    "WL"               => DSL::English::RecruitingWorkflows::Actions::WL::System,
-    "WL-System"        => DSL::English::RecruitingWorkflows::Actions::WL::System,
-    "WL-Ecosystem"     => DSL::English::RecruitingWorkflows::Actions::WL::System,
+    "Mathematica"      => DSL::English::RecruitingWorkflows::Actions::WL::Ecosystem,
+    "WL"               => DSL::English::RecruitingWorkflows::Actions::WL::Ecosystem,
+    "WL-System"        => DSL::English::RecruitingWorkflows::Actions::WL::Ecosystem,
+    "WL-Ecosystem"     => DSL::English::RecruitingWorkflows::Actions::WL::Ecosystem,
     "Bulgarian"        => DSL::English::RecruitingWorkflows::Actions::Bulgarian::Standard;
 
 my %targetToAction2{Str} = %targetToAction.grep({ $_.key.contains('-') }).map({ $_.key.subst('-', '::') => $_.value }).Hash;
