@@ -69,6 +69,10 @@ multi ToRecruitingWorkflowCode (Str $command, Str $target = 'WL-Ecosystem', *%ar
 
     my $ACTOBJ = %targetToAction{$target}.new(:$geoActions, :$jobsActions);
 
+    if $target ∉ %targetToAction.keys {
+        die "No actions for the target $target."
+    }
+
     DSL::Shared::Utilities::CommandProcessing::ToWorkflowCode($command,
                                                               grammar => $pCOMMAND,
                                                               targetToAction => %($target => $ACTOBJ),
