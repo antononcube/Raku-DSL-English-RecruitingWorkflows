@@ -57,15 +57,21 @@ my Str %targetToSeparator2{Str} = %targetToSeparator.grep({ $_.key.contains('-')
 my DSL::Entity::Geographics::Actions::WL::System $geoActions  .= new( resources => DSL::Entity::Geographics::resource-access-object()  );
 my DSL::Entity::Jobs::Actions::WL::System        $jobsActions .= new( resources => DSL::Entity::Jobs::resource-access-object() );
 
+#-----------------------------------------------------------
+sub RecruitingWorkflowsGrammar() is export {
+    my $pCOMMAND = DSL::English::RecruitingWorkflows::Grammar;
+    $pCOMMAND.set-geographics-resources(DSL::Entity::Geographics::resource-access-object());
+    $pCOMMAND.set-jobs-resources(DSL::Entity::Jobs::resource-access-object());
+
+    return $pCOMMAND;
+}
 
 #-----------------------------------------------------------
 proto ToRecruitingWorkflowCode(Str $command, Str $target = 'WL-Ecosystem', |) is export {*}
 
 multi ToRecruitingWorkflowCode (Str $command, Str $target = 'WL-Ecosystem', *%args ) {
 
-    my $pCOMMAND = DSL::English::RecruitingWorkflows::Grammar;
-    $pCOMMAND.set-geographics-resources(DSL::Entity::Geographics::resource-access-object());
-    $pCOMMAND.set-jobs-resources(DSL::Entity::Jobs::resource-access-object());
+    my $pCOMMAND = RecruitingWorkflowsGrammar();
 
     my $ACTOBJ = %targetToAction{$target}.new(:$geoActions, :$jobsActions);
 
