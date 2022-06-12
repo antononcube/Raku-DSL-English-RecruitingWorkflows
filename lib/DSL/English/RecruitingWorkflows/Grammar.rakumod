@@ -28,8 +28,7 @@
 #==============================================================================
 =end comment
 
-use v6;
-
+use v6.d;
 
 use DSL::Shared::Roles::English::CommonParts;
 use DSL::Shared::Roles::English::PipelineCommand;
