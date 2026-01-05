@@ -1,10 +1,9 @@
 
-use lib './lib';
-use lib '.';
+# use lib <. lib>;
 
 use DSL::English::RecruitingWorkflows;
 
-use DSL::English::RecruitingWorkflows::Actions::WL::System;
+use DSL::English::RecruitingWorkflows::Actions::WL::Ecosystem;
 use DSL::English::RecruitingWorkflows::Actions::R::base;
 
 use DSL::Entity::Geographics;
@@ -29,7 +28,7 @@ sub daw-subparse( Str:D $command, Str:D :$rule = 'TOP' ) {
 
 sub daw-interpret( Str:D $command,
                    Str:D:$rule = 'TOP',
-                   :$actions = DSL::English::RecruitingWorkflows::Actions::WL::System.new(:$geoActions, :$jobsActions )) {
+                   :$actions = DSL::English::RecruitingWorkflows::Actions::WL::Ecosystem.new(:$geoActions, :$jobsActions )) {
     $pCOMMAND.parse( $command, :$rule, :$actions ).made;
 }
 
@@ -40,10 +39,11 @@ say "=" x 60;
 #my $cmd = "recommend talent that has the skills java, spring, and agile";
 #my $cmd = "recommend talent that has the job titles java developer, software architect, and agile coach";
 #my $cmd = "recommend jobs that have java development, software architect, agile, and agile coach";
-my $cmd = "recommend top 20 job descriptions for java develpment, softwre architect, agile, and agile coach";
+#my $cmd = "recommend top 20 job descriptions for java develpment, softwre architect, agile, and agile coach";
+my $cmd = "recommend hiring managers that have java development, software architect, agile, and agile coach";
 #my $cmd = "recommend job descriptions for java";
 
-say daw-subparse( $cmd, rule => 'TOP' );
+say daw-parse( $cmd, rule => 'TOP' );
 
 say '=' x 60;
 say 'daw-interpret';
@@ -52,12 +52,12 @@ say '-' x 60;
 say daw-interpret(
         $cmd,
         rule => 'TOP',
-        actions => DSL::English::RecruitingWorkflows::Actions::WL::System.new(:$geoActions, :$jobsActions));
+        actions => DSL::English::RecruitingWorkflows::Actions::WL::Ecosystem.new(:$geoActions, :$jobsActions));
 
 say "=" x 60;
-say " ToRecruitingWorkflowCode ";
+say "ToRecruitingWorkflowCode ";
 say "-" x 60;
-say ToRecruitingWorkflowCode($cmd, 'WL-System', format => 'hash');
+say ToRecruitingWorkflowCode($cmd, 'WL-Ecosystem', format => 'hash');
 
 say "=" x 60;
 
@@ -67,15 +67,28 @@ say "=" x 60;
 
 my @testCommands = (
 'can you suggest a local jobs to investigate',
-'suggest something with fine quality assurance and software testing',
+'suggest something with quality assurance and software testing',
 'recommend talent to acquire',
 'recommend resumes to investigate',
 'recommend talent that has the skills java, spring, and agile',
-'recommend resumes with software architect, java, and data science'
+'recommend resumes with software architect, java, and data science',
+'recommend top 20 job descriptions for java development, software architect, agile, and agile coach',
+'recommend top 20 job descriptions for java development, software architect, agile, and agile coach and show them on LinkedIn, Conn'
 );
 
-my @targets = <WL-System>;
+# Show developer BI
+# I want to know people from our recruitment process
+# How many opportunities
+# Which are currently talked to
+# What is the progress / status of Rhobson
+# What is the average salary of Java engineer in Sao Paolo
+# 8. What is the average time to close an developer opportunity?
+# 8.1. For Looqbox
+# 8.2. Nation-wide
+# 8.3. For the last month
 
+#my @targets = <WL-System>;
+#
 #for @testCommands -> $c {
 #    say "=" x 60;
 #    say $c;
@@ -84,7 +97,7 @@ my @targets = <WL-System>;
 #        say $t;
 #        say '-' x 30;
 #        my $start = now;
-#        my $res = daw-interpret($c, actions => DSL::English::RecruitingWorkflows::Actions::WL::System.new);
+#        my $res = daw-interpret($c, actions => DSL::English::RecruitingWorkflows::Actions::WL::Ecosystem.new);
 #        #my $res = daw-parse($c);
 #        say "time:", now - $start;
 #        say $res;
