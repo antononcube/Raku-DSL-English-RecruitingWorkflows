@@ -24,7 +24,7 @@ role DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases
     ##-------------------------------------------------------
     # Recruiting item is a 1) job (description) or opportunity, and 2) resume or talent.
     rule recruiting-item-phrase {
-        <talent-resume-phrase> | <job-description-phrase>
+        <talent-resume-phrase> | <job-description-phrase> | <hiring-manager-phrase>
     }
 
     rule talent-resume-phrase {
@@ -33,6 +33,10 @@ role DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases
     rule job-description-phrase {
         [ <job-recruiting-word> | <jobs-recruiting-word> ] [ <description-recruiting-word> | <descriptions-recruiting-word> ]? |
         [ <opportunity-recruiting-word> | <opportunities-recruiting-word> ]
+    }
+
+    rule hiring-manager-phrase {
+        <hiring-recruiting-word> [ <menager-recruiting-word> | <managers-recruiting-word> ]
     }
 
     ##-------------------------------------------------------
@@ -100,7 +104,7 @@ role DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases
     ##-------------------------------------------------------
     ## General rules
     token acquisition-phrase { <acquisition-recruiting-word> | <gathering-recruiting-word> | <processing-recruiting-word> }
-    token procurement-phrase { <procurmend-recruiting-word> | <acquistion-phrase> }
+    token procurement-phrase { <procurement-recruiting-word> | <acquistion-phrase> }
 
     rule several-phrase {
         <a-determiner>? <few-recruiting-word> |
@@ -136,6 +140,11 @@ role DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases
 
     rule experimented-with-phrase {
         <experimented-recruiting-word> <with-preposition> |
+        <tried-recruiting-word> <out-adverb>? }
+
+    rule worked-with-phrase {
+        <worked-recruiting-word> <with-preposition> |
+        <recruited-recruiting-word> |
         <tried-recruiting-word> <out-adverb>? }
 
     rule ingredients-phrase {
@@ -203,6 +212,7 @@ role DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases
     token had-recruiting-word { :i 'had' | ([\w]+) <?{ $0.Str !(elem) <has have> and is-fuzzy-match( $0.Str, 'had', 1) }> }
     token has-recruiting-word { :i 'has' | ([\w]+) <?{ $0.Str !(elem) <had have> and is-fuzzy-match( $0.Str, 'has', 1) }> }
     token have-recruiting-word { :i 'have' | ([\w]+) <?{ $0.Str !(elem) <has had> and is-fuzzy-match( $0.Str, 'have', 1) }> }
+    token hiring-recruiting-word { :i 'hiring' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'hiring', 2) }> }
     token how-recruiting-word { :i 'how' | ([\w]+) <?{ $0.Str ne 'show' and is-fuzzy-match( $0.Str, 'how', 1) }> }
     token i-recruiting-word { :i 'i' }
     token im-recruiting-word { :i 'im' | 'i\'m' }
@@ -217,6 +227,8 @@ role DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases
     token light-recruiting-word { :i 'light' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'light') }> }
     token local-recruiting-word { :i 'local' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'local') }> }
     token make-recruiting-word { :i 'make' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'make', 1) }> }
+    token manager-recruiting-word { :i 'manager' | ([\w]+) <?{ $0.Str ne 'managers' and is-fuzzy-match( $0.Str, 'managers', 2) }> }
+    token managers-recruiting-word { :i 'managers' | ([\w]+) <?{ $0.Str ne 'manager' and is-fuzzy-match( $0.Str, 'managers', 2) }> }
     token many-recruiting-word { :i 'many' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'many', 1) }> }
     token me-recruiting-word { :i 'me' }
     token metadata-recruiting-word { :i 'metadata' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'metadata') }> }
@@ -238,12 +250,14 @@ role DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases
     token processing-recruiting-word { :i 'processing' | ([\w]+) <?{ $0.Str !(elem) <process processed> and is-fuzzy-match( $0.Str, 'processing') }> }
     token procure-recruiting-word { :i 'procure' | ([\w]+) <?{ $0.Str !(elem) <procuring procured> and is-fuzzy-match( $0.Str, 'procure') }> }
     token procured-recruiting-word { :i 'procures' | ([\w]+) <?{ $0.Str !(elem) <procuring procure> and is-fuzzy-match( $0.Str, 'procured') }> }
+    token procurement-recruiting-word { :i 'procurement' | ([\w]+) <?{ $0.Str !(elem) <procuring procure procures> and is-fuzzy-match( $0.Str, 'procurement') }> }
     token procuring-recruiting-word { :i 'procuring' | ([\w]+) <?{ $0.Str !(elem) <procure procured> and is-fuzzy-match( $0.Str, 'procuring') }> }
     token reaction-recruiting-word { :i 'reaction' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'reaction') }> }
     token recipe-recruiting-word { :i 'recipe' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'recipe') }> }
     token recipes-recruiting-word { :i 'recipes' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'recipes') }> }
     token recommend-recruiting-word { :i 'recommend' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'recommend') }> }
     token recommendations-recruiting-word { :i 'recommendations' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'recommendations') }> }
+    token recruited-recruiting-word { :i 'recruited' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'recruited') }> }
     token resume-recruiting-word { :i 'resume' | ([\w]+) <?{ $0.Str ne 'resumes' and is-fuzzy-match( $0.Str, 'resume') }> }
     token resumes-recruiting-word { :i 'resumes' | ([\w]+) <?{ $0.Str ne 'resume' and is-fuzzy-match( $0.Str, 'resumes') }> }
     token schema-recruiting-word { :i 'schema' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'schema') }> }
@@ -274,6 +288,7 @@ role DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases
     token what-recruiting-word { :i 'what' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'what', 1) }> }
     token when-recruiting-word { :i 'when' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'when', 1) }> }
     token with-recruiting-word { :i 'with' }
+    token worked-recruiting-word { :i 'worked' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'worked', 1) }> }
     token year-recruiting-word { :i 'year' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'year', 1) }> }
     token you-recruiting-word { :i 'you' | ([\w]+) <?{ is-fuzzy-match( $0.Str, 'you', 1) }> }
 }

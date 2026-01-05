@@ -39,7 +39,7 @@ role DSL::English::RecruitingWorkflows::Grammar::IntrospectionQuery {
     rule introspection-last-time-query {
         [ <.when-pronoun> | <.what-pronoun> ] [ <.was-recruiting-word> | <.is-verb> ] <.the-determiner> <last-recruiting-word> <time-recruiting-word>
         <user-spec>
-        <introspection-action>
+        <introspection-action> [ <.of-preposition> | <.for-preposition>  | <.with-preposition> ]?
         [ <data-with-quality-spec-list> || <data-source-spec> ]? }
 
     ## When
