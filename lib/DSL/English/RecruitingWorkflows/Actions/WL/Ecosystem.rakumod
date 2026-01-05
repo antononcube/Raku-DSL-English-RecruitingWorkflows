@@ -18,7 +18,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #   Written by Anton Antonov,
-#   antononcube @ posteo . net,
+#   ʇǝu˙oǝʇsod@ǝqnɔuouoʇuɐ,
 #   Windermere, Florida, USA.
 #
 #==============================================================================
@@ -248,6 +248,8 @@ class DSL::English::RecruitingWorkflows::Actions::WL::Ecosystem
 
         if $<recruiting-item-phrase><job-description-phrase> {
             $smrObj = 'smrHHGJobs'
+        } elsif $<recruiting-item-phrase><hiring-manager-phrase> {
+            $smrObj = 'smrHHGHiringManagers'
         }
 
         #make to_DSL_code('USE TARGET SMRMon-R; use smrHHG; recommend by profile ' ~ @resProfile.join(', ') ~ '; echo pipeline value;');
