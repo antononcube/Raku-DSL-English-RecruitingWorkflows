@@ -1,43 +1,41 @@
 {
-  "name": "DSL::English::RecruitingWorkflows",
-  "description": "Recruiting workflows building by natural language commands.",
-  "version": "0.1.0",
-  "perl": "6.d",
-  "authors": [
-    "Anton Antonov"
-  ],
-  "auth": "github:antononcube",
-  "depends": [
-    "DSL::Shared",
-    "DSL::Entity::Jobs",
-    "DSL::Entity::Geographics"
-  ],
-  "build-depends": [],
-  "test-depends": [],
-  "provides": {
-    "DSL::English::RecruitingWorkflows": "lib/DSL/English/RecruitingWorkflows.rakumod",
-    "DSL::English::RecruitingWorkflows::Actions::Bulgarian::Standard": "lib/DSL/English/RecruitingWorkflows/Actions/Bulgarian/Standard.rakumod",
-    "DSL::English::RecruitingWorkflows::Actions::WL::Ecosystem": "lib/DSL/English/RecruitingWorkflows/Actions/WL/Ecosystem.rakumod",
-    "DSL::English::RecruitingWorkflows::Grammar": "lib/DSL/English/RecruitingWorkflows/Grammar.rakumod",
-    "DSL::English::RecruitingWorkflows::Grammar::IngredientQuery": "lib/DSL/English/RecruitingWorkflows/Grammar/IngredientQuery.rakumod",
-    "DSL::English::RecruitingWorkflows::Grammar::IngredientSpec": "lib/DSL/English/RecruitingWorkflows/Grammar/IngredientSpec.rakumod",
-    "DSL::English::RecruitingWorkflows::Grammar::IntrospectionQuery": "lib/DSL/English/RecruitingWorkflows/Grammar/IntrospectionQuery.rakumod",
-    "DSL::English::RecruitingWorkflows::Grammar::RecommendationsCommand": "lib/DSL/English/RecruitingWorkflows/Grammar/RecommendationsCommand.rakumod",
-    "DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases": "lib/DSL/English/RecruitingWorkflows/Grammar/RecruitingPhrases.rakumod"
-  },
-  "resources": [],
-  "license": "GPL-3.0-or-later",
-  "tags": [
-    "talent",
-    "jobs",
-    "procurement",
-    "recommendation",
-    "parser",
-    "interpreter",
-    "monad",
-    "workflow",
-    "pipeline"
-  ],
-  "api": "1",
-  "source-url": "https://github.com/antononcube/Raku-DSL-English-RecruitingWorkflows.git"
+    "name": "DSL::English::RecruitingWorkflows",
+    "description": "Recruiting workflows building by natural language commands.",
+    "version": "0.1.0",
+    "authors": [
+        "Anton Antonov"
+    ],
+    "auth": "github:antononcube",
+    "depends": [
+        "DSL::Shared:ver<0.2.11+>",
+        "DSL::Entity::Jobs:ver<0.1.0+>",
+        "DSL::Entity::Geographics:ver<0.1.5+>"
+    ],
+    "build-depends": [],
+    "provides": {
+        "DSL::English::RecruitingWorkflows": "lib/DSL/English/RecruitingWorkflows.rakumod",
+        "DSL::English::RecruitingWorkflows::Actions::Bulgarian::Standard": "lib/DSL/English/RecruitingWorkflows/Actions/Bulgarian/Standard.rakumod",
+        "DSL::English::RecruitingWorkflows::Actions::R::base": "lib/DSL/English/RecruitingWorkflows/Actions/R/base.rakumod",
+        "DSL::English::RecruitingWorkflows::Actions::WL::Ecosystem": "lib/DSL/English/RecruitingWorkflows/Actions/WL/Ecosystem.rakumod",
+        "DSL::English::RecruitingWorkflows::Grammar": "lib/DSL/English/RecruitingWorkflows/Grammar.rakumod",
+        "DSL::English::RecruitingWorkflows::Grammar::IngredientQuery": "lib/DSL/English/RecruitingWorkflows/Grammar/IngredientQuery.rakumod",
+        "DSL::English::RecruitingWorkflows::Grammar::IngredientSpec": "lib/DSL/English/RecruitingWorkflows/Grammar/IngredientSpec.rakumod",
+        "DSL::English::RecruitingWorkflows::Grammar::IntrospectionQuery": "lib/DSL/English/RecruitingWorkflows/Grammar/IntrospectionQuery.rakumod",
+        "DSL::English::RecruitingWorkflows::Grammar::RecommendationsCommand": "lib/DSL/English/RecruitingWorkflows/Grammar/RecommendationsCommand.rakumod",
+        "DSL::English::RecruitingWorkflows::Grammar::RecruitingPhrases": "lib/DSL/English/RecruitingWorkflows/Grammar/RecruitingPhrases.rakumod"
+    },
+    "license": "GPL-3.0-or-later",
+    "tags": [
+        "talent",
+        "jobs",
+        "procurement",
+        "recommendation",
+        "parser",
+        "interpreter",
+        "monad",
+        "workflow",
+        "pipeline"
+    ],
+    "api": "1",
+    "source-url": "https://github.com/antononcube/Raku-DSL-English-RecruitingWorkflows.git"
 }
