@@ -41,9 +41,6 @@ use DSL::English::RecruitingWorkflows;
 ToRecruitingWorkflowCode(
     "recommend talent that has the skills java, spring, and agile",
     "WL-Ecosystem");
-```
-```
-# smrHHGResumes \[DoubleLongRightArrow] SMRMonRecommendByProfile[ {"Skill:Java", "Skill:Spring", "Skill:Agile"}] \[DoubleLongRightArrow] SMRMonJoinAcross["Warning"->False] \[DoubleLongRightArrow] SMRMonTakeValue[]
 ``` 
 
 -----
