@@ -1,33 +1,3 @@
-=begin comment
-#==============================================================================
-#
-#   Recruiting workflows grammar in Raku
-#   Copyright (C) 2021  Anton Antonov
-#
-#   This program is free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
-#
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#
-#   You should have received a copy of the GNU General Public License
-#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#   Written by Anton Antonov,
-#   ʇǝu˙oǝʇsod@ǝqnɔuouoʇuɐ,
-#   Windermere, Florida, USA.
-#
-#==============================================================================
-#
-#   For more details about Raku see https://raku.org/ .
-#
-#==============================================================================
-=end comment
-
 use v6.d;
 
 use DSL::Shared::Roles::English::CommonParts;
@@ -62,18 +32,19 @@ grammar DSL::English::RecruitingWorkflows::Grammar
 
     # TOP
     rule TOP {
-        <pipeline-command> ||
-        <introspection-query-command> ||
-        <ingredient-query-command> ||
-        <recommendations-by-profile-command> ||
-        <recommendations-command> ||
-        <recommend-for-job-command> }
+        || <pipeline-command>
+        || <introspection-query-command>
+        || <ingredient-query-command>
+        || <recommendations-by-profile-command>
+        || <recommendations-command>
+        || <recommend-for-job-command>
+    }
 
     rule job-entity-spec { <entity-job-title> | <entity-job-skill> }
 
     rule job-entity-spec-list { <job-entity-spec>+ % <.list-separator> }
 
-    rule recommend-for-job-command { 'i' [ 'want' | 'am' 'interested' 'in']  [ 'talent' | 'recruitas' | 'people'] [ <for-preposition> | <with-preposition> | 'that' 'fit'] <job-entity-spec-list> }
+    rule recommend-for-job-command { 'i' [ 'want' | 'am' 'interested' 'in']  [ 'talent' | 'recruits' | 'people'] [ <for-preposition> | <with-preposition> | 'that' 'fit'] <job-entity-spec-list> }
 
     rule data-query-command { [ 'how' 'many' | 'what' 'count' ] .'of' <job-entity-command> 'is' 'in' 'my' [ 'database' | 'catalog' ] }
 
