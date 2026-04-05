@@ -14,27 +14,27 @@ $pCOMMAND.set-geographics-resources(DSL::Entity::Geographics::resource-access-ob
 ## Recommendations commands
 ##===========================================================
 
-plan 17;
+plan 18;
 
 ## 1
-ok $pCOMMAND.parse('can you suggest resumes with fats'.lc),
-        'can you suggest resumes with fats';
+ok $pCOMMAND.parse('can you suggest resumes with java'.lc),
+        'can you suggest resumes with java';
 
 ## 2
-ok $pCOMMAND.parse('can you suggest resumes with low carbs'.lc),
-        'can you suggest resumes with low carbs';
+ok $pCOMMAND.parse('can you suggest resumes with software architect'.lc),
+        'can you suggest resumes with software architect';
 
 ## 3
-ok $pCOMMAND.parse('can you suggest resumes with protein'.lc),
-        'can you suggest resumes with protein';
+ok $pCOMMAND.parse('can you suggest resumes with nurse'.lc),
+        'can you suggest resumes with nurse';
 
 ## 4
-ok $pCOMMAND.parse('can you suggest resumes with sugars'.lc),
-        'can you suggest resumes with sugars';
+ok $pCOMMAND.parse('can you suggest resumes with javascript'.lc),
+        'can you suggest resumes with javascript';
 
 ## 5
-ok $pCOMMAND.parse('recommend a course'.lc),
-        'recommend a course';
+ok $pCOMMAND.parse('recommend a job'.lc),
+        'recommend a job';
 
 ## 6
 ok $pCOMMAND.parse('recommend a resume'.lc),
@@ -49,12 +49,12 @@ ok $pCOMMAND.parse('recommend a few resumes'.lc),
         'recommend a few resumes';
 
 ## 9
-ok $pCOMMAND.parse('recommend talent for easter'.lc),
-        'recommend talent for easter';
+ok $pCOMMAND.parse('recommend talent for arizona'.lc),
+        'recommend talent for arizona';
 
 ## 10
-ok $pCOMMAND.parse('recommend talent for lunch'.lc),
-        'recommend talent for lunch';
+ok $pCOMMAND.parse('recommend talent for atlanta, ga'.lc),
+        'recommend talent for atlanta, ga';
 
 ## 11
 ok $pCOMMAND.parse('recommend resumes'.lc),
@@ -65,8 +65,8 @@ ok $pCOMMAND.parse('recommend resumes for 1st quarter'.lc),
         'recommend resumes for 1st quarter';
 
 ## 13
-ok $pCOMMAND.parse('recommend resumes for easter'.lc),
-        'recommend resumes for easter';
+ok $pCOMMAND.parse('recommend resumes for april'.lc),
+        'recommend resumes for april';
 
 ## 14
 ok $pCOMMAND.parse('suggest a resume to prepare'.lc),
@@ -83,5 +83,9 @@ ok $pCOMMAND.parse('tell me a few talent'.lc),
 ## 17
 ok $pCOMMAND.parse('what to prepare'.lc),
         'what to prepare';
+
+## 18
+ok $pCOMMAND.parse('what to work on'.lc),
+        'what to work on';
 
 done-testing;
