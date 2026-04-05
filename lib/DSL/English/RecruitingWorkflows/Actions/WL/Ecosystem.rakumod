@@ -161,59 +161,59 @@ class DSL::English::RecruitingWorkflows::Actions::WL::Ecosystem
 
     method recommendations-by-profile-main($/) {
         my $nrecs = '';
-        my Str $smrObj = 'smrHHGResumes';
-        my Str @resProfile;
+        my Str:D $smrObj = 'smrHHGResumes';
+        my @resProfile;
 
         if $<top-nrecs-spec> {
             $nrecs = ', ' ~ $<top-nrecs-spec>.made;
         }
 
         if $<data-quality-spec> {
-            @resProfile.append($<data-quality-spec>.made)
+            @resProfile .= append($<data-quality-spec>.made)
         }
 
         if $<period-acquisition-spec> {
-            @resProfile.append($<period-acquisition-spec>.made)
+            @resProfile .= append($<period-acquisition-spec>.made)
         }
 
         if $<period-spec> {
-            @resProfile.append($<period-spec>.made)
+            @resProfile .= append($<period-spec>.made)
         }
 
         if $<data-quality-spec-list> {
-            @resProfile.append($<data-quality-spec-list>.made)
+            @resProfile .= append($<data-quality-spec-list>.made)
         }
 
         if $<data-with-quality-spec-list> {
-            @resProfile.append($<data-with-quality-spec-list>.made)
+            @resProfile .= append($<data-with-quality-spec-list>.made)
         }
 
         if $<mixed-data-spec-list> {
-            @resProfile.append($<mixed-data-spec-list>.made)
+            @resProfile .= append($<mixed-data-spec-list>.made)
         }
 
         if $<data-source-spec> {
-            @resProfile.append($<data-source-spec>.made)
+            @resProfile .= append($<data-source-spec>.made)
         }
 
         if $<enhanced-ingredient-spec-list> {
-            @resProfile.append($<enhanced-ingredient-spec-list>.made)
+            @resProfile .= append($<enhanced-ingredient-spec-list>.made)
         }
 
         if $<ingredient-spec-list> {
-            @resProfile.append($<ingredient-spec-list>.made)
+            @resProfile .= append($<ingredient-spec-list>.made)
         }
 
         if $<skill-spec-list> {
-            @resProfile.append($<skill-spec-list>.made)
+            @resProfile .= append($<skill-spec-list>.made);
         }
 
         if $<job-title-spec-list> {
-            @resProfile.append($<job-title-spec-list>.made)
+            @resProfile .= append($<job-title-spec-list>.made)
         }
 
         if self.makeUserIDTag().chars > 0 {
-            @resProfile = @resProfile.append(self.makeUserIDTag())
+            @resProfile .= append(self.makeUserIDTag())
         }
 
         if $<recruiting-item-phrase><job-description-phrase> {
@@ -344,7 +344,7 @@ class DSL::English::RecruitingWorkflows::Actions::WL::Ecosystem
         make $/.values[0].made;
     }
 
-    method skills-spec-list($/) {
+    method skill-spec-list($/) {
         make $/.values>>.made;
     }
 
