@@ -6,7 +6,7 @@ role DSL::English::RecruitingWorkflows::Grammar::RecommendationsCommand {
         [ <.recommend-phrase> | <.what-pronoun> ]
           <top-nrecs-spec>?
           [ <several-phrase> | <a-determiner> | <the-determiner> ]?
-          [ <.something-recruiting-word> | <.some-determiner>? <.recruiting-item-phrase> | <.recruiting-item-phrase>? <job-description-phrase> ]?
+          [ <.something-recruiting-word> | <.some-determiner>? <.recruiting-item-phrase> | <.recruiting-item-phrase>? <recruiting-item-phrase> ]?
           [ <.to-preposition> [ <analyze-phrase> | <acquire-phrase> ] ]?
           [ <.for-preposition> <.the-determiner>? [ <period-spec> | <period-acquisition-spec> ] ]?
     }
